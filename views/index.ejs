@@ -1,0 +1,67 @@
+<%- include('includes/header.ejs') %>
+
+    <div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-primary text-white">
+        <div class="col-sm-4 bg-white p-4 p-md-5 rounded-4 text-black">
+            <% if (short_url.length > 0) { %>
+                <div class="mb-3">
+                    <h5 class="d-flex">
+                        <i class="fa-solid fa-link pt-1 pe-2 text-primary"></i>
+                        <div>Your Long URL</div>
+                    </h5>
+                    <input type="text" class="form-control <%= error.length > 0 ? 'border-danger' : '' %>" id="long_url" name="long_url" aria-describedby="longUrlHelp" value="<%= value.length > 0 ? value : '' %>"
+                        readonly />
+                    <% if (error.length > 0) { %>
+                        <p class="text-danger"><%= error %></p>
+                    <% } %>
+                </div>
+                <div class="mb-3">
+                    <h5 class="d-flex">
+                        <i class="fa-solid fa-wand-magic-sparkles pt-1 pe-2 text-primary"></i>
+                        <div>Your Short URL</div>
+                    </h5>
+                    <input type="text" class="form-control" id="short_url" name="short_url" aria-describedby="longUrlHelp" value="<%= short_url.length > 0 ? short_url : '' %>"
+                        readonly />
+                </div>
+                
+                <div class="d-flex justify-content-between mb-3">
+                    <a type="button" target="_blank" href="<%= short_url %>" class="btn btn-warning w-50"><i class="fa-solid fa-share pe-2"></i>Visit URL</a>&nbsp;
+                    <button type="button" class="btn btn-primary w-50" id="copyshorturlbtn"><i class="fa-solid fa-copy pe-2"></i>Copy</button>
+                </div>
+                <div>
+                    <a type="button" href="http://localhost:3000/" class="btn btn-success w-100">Shorten Another URL</a>
+                </div>
+            <% } else { %>
+                <div class="text-center mb-4">
+                    <h2 class="d-flex">
+                        <i class="fa-solid fa-link pt-2 pe-2 text-primary"></i>
+                        <div>Shorten a long URL</div>
+                    </h2>
+                </div>
+
+                <form method="post" action="/" id="loginForm" >
+                    <div class="mb-3">
+                        <label for="long_url" class="form-label">Shorten a long URL</label>
+                        <input type="text" class="form-control <%= error.length > 0 ? 'border-danger' : '' %>" id="long_url" name="long_url" aria-describedby="longUrlHelp" value="<%= value.length > 0 ? value : '' %>"
+                            required />
+                        <% if (error.length > 0) { %>
+                            <p class="text-danger"><%= error %></p>
+                        <% } %>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success w-100">Submit</button>
+                </form>
+            <% } %>
+        </div>
+    </div>
+    <script>
+        document.getElementById('copyshorturlbtn').addEventListener('click', function() {
+            const inputField = document.getElementById('short_url');
+            navigator.clipboard.writeText(inputField.value).then(() => {
+                alert('Text copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        });
+    </script>
+
+<%- include('includes/footer.ejs') %>

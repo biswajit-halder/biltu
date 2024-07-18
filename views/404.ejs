@@ -1,0 +1,12 @@
+<%- include('includes/header.ejs') %>
+
+<div class="container-fluid min-vh-100 d-flex align-items-center justify-content-center bg-primary text-white">
+    <div class="col-sm-4 bg-white p-4 p-md-5 rounded-4 text-black">
+        <!-- <h4 class="text-danger"><%= value %></h4> -->
+        <h3 class="text-danger"><%= errormsg %></h3>
+
+        <a type="button" href="http://localhost:3000/" class="btn btn-primary mt-3">Shorten Another URL</a>
+    </div>
+</div>
+
+<%- include('includes/footer.ejs') %>
