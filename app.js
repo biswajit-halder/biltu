@@ -36,4 +36,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 @ ${process.env.PROTOCOL}//${process.env.DB_HOST}:${process.env.PORT}/`));
+app.listen(PORT, () => console.log(`🚀 @ ${process.env.PROTOCOL}//${process.env.DB_HOST}:${PORT}/`));
